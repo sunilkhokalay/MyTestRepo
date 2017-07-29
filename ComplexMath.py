@@ -1,5 +1,6 @@
 import unittest
 
+
 class ComplexMath(object):
     '''
     This class represent complex numbers
@@ -52,3 +53,25 @@ class TestComplexMath(unittest.TestCase):
     def testComplexSubstraction(self):
         print(self.a-self.b)
         assert (self.a - self.b) == (ComplexMath(0, 0)), "Substraction failed!"
+
+    def testOne(self):
+        self.assertEqual("Hi","Hi","Strings are not equal")
+
+    @unittest.skip
+    def testTwo(self):
+        self.assertListEqual([1,2,3,4], [4,3,2,1], "Lists are not equal")
+
+    def testThree(self):
+        self.assertDictEqual({'a':1,'b':2},{'b':2,'a':1},"DIct not equal")
+
+    def testFour(self):
+        self.assertAlmostEqual(1.6, 1.599, places=2, msg = "Float are not almost equal")
+
+
+suite = unittest.TestSuite()
+suite.addTest(unittest.makeSuite(TestComplexMath))
+# suite.addTest(TestComplexMath("testOne"))
+# suite.addTests([TestComplexMath("testOne"),TestComplexMath("testFour")])
+
+runner = unittest.TextTestRunner()
+runner.run(suite)
